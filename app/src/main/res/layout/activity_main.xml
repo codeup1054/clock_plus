@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_parse"
+            android:layout_width="446dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="#f00"
+            android:text=" "
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/debugText"
+            android:layout_width="190dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="532dp"
+            android:layout_marginTop="176dp"
+            android:maxLines="4"
+            android:text="-"
+            android:textColor="#000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextClock
+            android:id="@+id/simpleDigitalClockTime"
+            android:layout_width="511dp"
+            android:layout_height="188dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight=".65"
+            android:format12Hour="HH:mm"
+            android:format24Hour="HH:mm"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:paddingStart="20dp"
+            android:text="00:00"
+            android:textAlignment="viewStart"
+            android:textColor="#cba"
+            android:textSize="165sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="4dp" />
+
+        <TextClock
+            android:id="@+id/simpleDigitalClockMonth"
+            android:layout_width="174dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="136dp"
+            android:layout_marginEnd="4dp"
+            android:format12Hour="MMMM"
+            android:format24Hour="MMMM"
+            android:paddingEnd="10dp"
+            android:text="Dec"
+            android:textAlignment="textEnd"
+            android:textColor="#ccbbb8"
+            android:textSize="32sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextClock
+            android:id="@+id/simpleDigitalClockDay"
+            android:layout_width="174dp"
+            android:layout_height="147dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="4dp"
+            android:format12Hour="dd"
+            android:format24Hour="dd"
+            android:paddingStart="10dp"
+            android:text="27"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="130sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextClock
+            android:id="@+id/WeekDayMoved"
+            android:layout_width="50dp"
+            android:layout_height="43dp"
+            android:layout_toRightOf="@id/linearLayout"
+            android:format12Hour="EEE"
+            android:format24Hour="EEE"
+            android:paddingStart="10dp"
+            android:text="wed"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="32sp"
+            android:timeZone="GMT+0300"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="115dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="4dp"
+            android:text="-15"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="60sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_width="117dp"
+            android:layout_height="130dp"
+            android:text="78"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.193"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/forecast_humidity"
+            android:layout_width="117dp"
+            android:layout_height="70dp"
+            android:text="65"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="60sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.193"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.997"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/forecast_pressure_pa"
+            android:layout_width="159dp"
+            android:layout_height="70dp"
+            android:text="987"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.417"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.997"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/pressure_pa"
+            android:layout_width="160dp"
+            android:layout_height="130dp"
+            android:text="1002"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/now_dt"
+            android:layout_width="161dp"
+            android:layout_height="30dp"
+            android:text="reload"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.992"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/update_request_time"
+            android:layout_width="153dp"
+            android:layout_height="21dp"
+            android:text="2020-02-01 "
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/forecast_prec_mm"
+            android:layout_width="85dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="4dp"
+            android:text="0.6"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.589" />
+
+        <TextView
+            android:id="@+id/forecast_wind_dir"
+            android:layout_width="90dp"
+            android:layout_height="72dp"
+            android:text="s"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#cba"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.589" />
+
+        <TextView
+            android:id="@+id/forecast_prec_prob"
+            android:layout_width="80dp"
+            android:layout_height="72dp"
+            android:text="50%"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.589" />
+
+        <TextView
+            android:id="@+id/forecast_wind_speed"
+            android:layout_width="85dp"
+            android:layout_height="72dp"
+            android:text="5.1"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.589" />
+
+        <TextView
+            android:id="@+id/forecast_wind_speed2"
+            android:layout_width="55dp"
+            android:layout_height="32dp"
+            android:text="m/c"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.42"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.649" />
+
+
+        <TextView
+            android:id="@+id/forecast_wind_speed3"
+            android:layout_width="50dp"
+            android:layout_height="32dp"
+            android:text="mm"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.649" />
+
+        <TextView
+            android:id="@+id/forecast_wind_speed4"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:text="%"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.27"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.649" />
+
+        <TextView
+            android:id="@+id/forecast_feels_like"
+            android:layout_width="45dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="4dp"
+            android:text="-15"
+            android:textAlignment="textEnd"
+            android:textColor="#555"
+            android:textSize="16sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.734"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/forecast_temp_min"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="4dp"
+            android:text="-14"
+            android:textAlignment="textEnd"
+            android:textColor="#555"
+            android:textSize="16sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.898"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/forecast_temp_avg"
+            android:layout_width="115dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="4dp"
+            android:text="-10"
+            android:textAlignment="textEnd"
+            android:textColor="#cba"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/plotImageView"
+            android:layout_width="272dp"
+            android:layout_height="194dp"
+            android:layout_alignParentRight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.995"
+            app:srcCompat="@drawable/yw_plot" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
