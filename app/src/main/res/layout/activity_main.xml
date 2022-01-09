@@ -75,6 +75,7 @@
             android:text="Dec"
             android:textAlignment="textEnd"
             android:textColor="#ccbbb8"
+            android:background="#00FF0000"
             android:textSize="32sp"
             android:timeZone="GMT+0300"
             app:layout_constraintEnd_toEndOf="parent"
