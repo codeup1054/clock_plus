@@ -25,13 +25,20 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     //  < ************  loop interval
 
-    private int mInterval = 700000; // 5 seconds by default, can be changed later
+    private int mInterval = 500000; // 5 seconds by default, can be changed later
     private int loops = 0; // counter
 
     private Handler mHandler; //    loop interval
@@ -141,11 +148,27 @@ public class MainActivity extends AppCompatActivity {
 //        BatteryManager bm = (BatteryManager) context.getSystemService(BATTERY_SERVICE);
 //        int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
 //    }
+
+    DrawableCrossFadeFactory factory =
+            new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
+
+
     private void plot()
     {
         plotImageView = findViewById(R.id.plotImageView);
-        Glide.with(this).load("https://gpxlab.ru/api/yw.php")
+
+        String  plotImageUrl = "https://gpxlab.ru/api/yw.php";
+        Glide.with(this).load(plotImageUrl)
+//                .transition(DrawableTransitionOptions.withCrossFade(factory))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .thumbnail(
+//                        Glide // this thumbnail request has to have the same RESULT cache key
+//                                .with(this) // as the outer request, which usually simply means
+//                                .load(plotImageUrl) // same size/transformation(e.g. centerCrop)/format(e.g. asBitmap)
+//                                .fitCenter() // have to be explicit here to match outer load exactly
+//                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                                .skipMemoryCache(true)
+//                )
                 .skipMemoryCache(true)
                 .into(plotImageView);
     }
@@ -229,6 +252,32 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             jsonObj = response.getJSONObject("forecast");
+
+                            id = getResources().getIdentifier("sunrise", "id", getPackageName());
+                            String sunriseString  = jsonObj.getString("sunrise");
+                            view = (TextView) findViewById(id);
+                            view.setText(sunriseString);
+
+                            id = getResources().getIdentifier("sunset", "id", getPackageName());
+                            String sunsetString  = jsonObj.getString("sunset");
+                            view = (TextView) findViewById(id);
+                            view.setText(sunsetString);
+
+
+                            format = new SimpleDateFormat("HH:mm");
+                            Date sunriseStringParsed = format.parse(sunriseString);
+                            Date sunsetStringParsed = format.parse(sunsetString);
+
+                            long diff =  sunsetStringParsed.getTime() - sunriseStringParsed.getTime();
+                            int hours = (int) (diff / (1000 * 60 * 60));
+                            int minutes = (int) (diff / (1000 * 60))%60;
+
+
+
+                            id = getResources().getIdentifier("duration", "id", getPackageName());
+                            view = (TextView) findViewById(id);
+                            view.setText( String.format("%02d:%02d",hours, minutes));
+
                             jsonArray = jsonObj.getJSONArray("parts");
                             JSONObject forecast2 = jsonArray.getJSONObject(1);
 
@@ -272,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                             jsonArray = jsonObj.getJSONArray("parts");
 //                            Log.e("myTag", "06." + String.valueOf(jsonArray.length()));
 
-                        } catch (JSONException e) {
+                        } catch (JSONException | ParseException e) {
                             e.printStackTrace();
                         }
 
