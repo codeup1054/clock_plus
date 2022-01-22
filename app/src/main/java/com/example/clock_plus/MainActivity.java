@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < foreCastMetric.length; i++) {
 
                                 viewName = foreCastMetric[i];
-                                Log.d("@@ 07.", String.valueOf(viewName));
+                                Log.d("@@ 07.", String.valueOf(i) + ": " + String.valueOf(viewName) +" ******");
                                 stringMetricValue = forecast2.getString(viewName);
                                 id = getResources().getIdentifier("forecast_" + viewName, "id", getPackageName());
                                 view = (TextView) findViewById(id);
