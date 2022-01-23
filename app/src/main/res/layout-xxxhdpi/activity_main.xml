@@ -433,12 +433,12 @@
 
         <TextView
             android:id="@+id/forecast_feels_like"
-            android:layout_width="45dp"
-            android:layout_height="27dp"
+            android:layout_width="31dp"
+            android:layout_height="23dp"
             android:layout_marginStart="4dp"
             android:text="-15"
             android:textAlignment="textEnd"
-            android:textColor="#555"
+            android:textColor="#522"
             android:textSize="16sp"
             android:timeZone="GMT+0300"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -447,23 +447,22 @@
             app:layout_constraintVertical_bias="0.734"
             tools:ignore="MissingConstraints" />
 
+
         <TextView
             android:id="@+id/forecast_temp_min"
-            android:layout_width="47dp"
+            android:layout_width="31dp"
             android:layout_height="32dp"
             android:layout_marginStart="4dp"
             android:text="-14"
             android:textAlignment="textEnd"
-            android:textColor="#555"
+            android:textColor="#522"
             android:textSize="16sp"
             android:timeZone="GMT+0300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898"
+            app:layout_constraintVertical_bias="0.817"
             tools:ignore="MissingConstraints" />
-
-
 
         <ImageView
             android:id="@+id/plotImageView"
@@ -479,31 +478,31 @@
             app:srcCompat="@drawable/yw_plot" />
 
         <TextView
-            android:id="@+id/temp_label"
-            android:layout_width="47dp"
-            android:layout_height="32dp"
-            android:text="℃"
-            android:textAlignment="textEnd"
-            android:textColor="#c00"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.096"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.889" />
-
-        <TextView
             android:id="@+id/humidity_label"
             android:layout_width="47dp"
             android:layout_height="32dp"
             android:text="%"
             android:textAlignment="center"
             android:textColor="#59e"
-            android:textSize="17sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintHorizontal_bias="0.197"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.889" />
+
+        <TextView
+            android:id="@+id/temp_label"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:text="℃"
+            android:textAlignment="textEnd"
+            android:textColor="#c00"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.889" />
@@ -515,10 +514,10 @@
             android:text="mp"
             android:textAlignment="center"
             android:textColor="#1a8"
-            android:textSize="17sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintHorizontal_bias="0.383"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.889" />
