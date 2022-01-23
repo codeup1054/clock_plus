@@ -3,6 +3,7 @@
 package com.example.clock_plus;
 
 import android.annotation.SuppressLint;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar c = Calendar.getInstance();
         dayOfWeek = c.get(Calendar.DAY_OF_WEEK) + 5;
-        movedView.setX((float) ((dayOfWeek % 7 * screenWidth) / 6.6));
+        movedView.setX((float) ((dayOfWeek % 7 * screenWidth) / 7));
 
     }
 
@@ -194,6 +195,18 @@ public class MainActivity extends AppCompatActivity {
 //        String url = "http://gpxlab.ru/data/yandex_weather_forecast.json";
 
 //        String url = "https://api.weather.yandex.ru/v2/informers?lat=55.692&lon=37.347";
+
+        BatteryManager bm = (BatteryManager) getApplicationContext().getSystemService(BATTERY_SERVICE);
+        int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+
+        Log.d("@@ battery level", String.valueOf(batLevel));
+
+        String viewName = "battery";
+        int id = 0;
+
+        id = getResources().getIdentifier(viewName, "id", getPackageName());
+        TextView view = (TextView) findViewById(id);
+        view.setText(String.valueOf(batLevel) + "%");
 
         String url = "https://gpxlab.ru/api/clock.php?lat=55.692&lon=37.347";
 

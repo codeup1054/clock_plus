@@ -14,17 +14,32 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/battery"
+            android:layout_width="82dp"
+            android:layout_height="30dp"
+            android:text="20%"
+            android:textAlignment="textEnd"
+            android:textColor="#a98"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <Button
             android:id="@+id/button_parse"
             android:layout_width="491dp"
             android:layout_height="181dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="96dp"
             android:background="@android:color/transparent"
             android:backgroundTint="#f00"
             android:text=" "
             android:textColor="#000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.013"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -44,10 +59,28 @@
             tools:ignore="MissingConstraints" />
 
         <TextClock
+            android:id="@+id/simpleDigitalClockTimeSec"
+            android:layout_width="60dp"
+            android:layout_height="44dp"
+            android:format12Hour="ss"
+            android:format24Hour="ss"
+            android:text="45"
+            android:textAlignment="center"
+            android:textColor="#cba"
+            android:textSize="20sp"
+            android:timeZone="GMT+0300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.345"
+            tools:ignore="MissingConstraints" />
+
+        <TextClock
             android:id="@+id/simpleDigitalClockTime"
             android:layout_width="471dp"
             android:layout_height="186dp"
-            android:layout_marginTop="8dp"
             android:layout_weight=".65"
             android:format12Hour="HH:mm"
             android:format24Hour="HH:mm"
@@ -59,9 +92,13 @@
             android:textColor="#cba"
             android:textSize="150sp"
             android:timeZone="GMT+0300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.012"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="4dp" />
+            app:layout_constraintVertical_bias="0.169"
+            tools:ignore="MissingConstraints" />
 
         <TextClock
             android:id="@+id/simpleDigitalClockMonth"
@@ -213,7 +250,7 @@
 
         <TextView
             android:id="@+id/now_dt"
-            android:layout_width="161dp"
+            android:layout_width="90dp"
             android:layout_height="30dp"
             android:text="reload"
             android:textAlignment="center"
@@ -221,7 +258,7 @@
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.992"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
@@ -380,6 +417,7 @@
             app:layout_constraintVertical_bias="0.58" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="47dp"
             android:layout_height="32dp"
             android:text="%"
@@ -440,6 +478,50 @@
             app:layout_constraintVertical_bias="0.995"
             app:srcCompat="@drawable/yw_plot" />
 
+        <TextView
+            android:id="@+id/temp_label"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:text="℃"
+            android:textAlignment="textEnd"
+            android:textColor="#c00"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.096"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.889" />
+
+        <TextView
+            android:id="@+id/humidity_label"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:text="%"
+            android:textAlignment="center"
+            android:textColor="#59e"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.889" />
+
+        <TextView
+            android:id="@+id/pressure_mp_label"
+            android:layout_width="47dp"
+            android:layout_height="32dp"
+            android:text="mp"
+            android:textAlignment="center"
+            android:textColor="#1a8"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.889" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
