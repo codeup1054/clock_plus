@@ -208,6 +208,7 @@
             android:layout_width="210dp"
             android:layout_height="100dp"
             android:text="1002"
+            android:visibility="invisible"
             android:textAlignment="textEnd"
             android:textColor="#3ca"
             android:textSize="100sp"
@@ -224,6 +225,7 @@
             android:layout_width="210dp"
             android:layout_height="100dp"
             android:text="987"
+            android:visibility="invisible"
             android:textAlignment="textEnd"
             android:textColor="#1a8"
             android:textSize="100sp"
@@ -235,6 +237,37 @@
             app:layout_constraintVertical_bias="0.997"
             tools:ignore="MissingConstraints" />
 
+        <TextView
+            android:id="@+id/pressure_mm"
+            android:layout_width="210dp"
+            android:layout_height="100dp"
+            android:text="760"
+            android:textAlignment="textEnd"
+            android:textColor="#3ca"
+            android:textSize="100sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.83"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/forecast_pressure_mm"
+            android:layout_width="210dp"
+            android:layout_height="100dp"
+            android:text="751"
+            android:textAlignment="textEnd"
+            android:textColor="#1a8"
+            android:textSize="100sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.997"
+            tools:ignore="MissingConstraints" />
 
 
         <TextView
@@ -391,6 +424,7 @@
 
 
         <TextView
+            android:id="@+id/wind_speed_label"
             android:layout_width="55dp"
             android:layout_height="32dp"
             android:rotation="-90"
@@ -406,6 +440,7 @@
             app:layout_constraintVertical_bias="0.58" />
 
         <TextView
+            android:id="@+id/prec_mm_label"
             android:layout_width="50dp"
             android:layout_height="32dp"
             android:rotation="-90"
@@ -421,6 +456,7 @@
             app:layout_constraintVertical_bias="0.58" />
 
         <TextView
+            android:id="@+id/prec_prob_label"
             android:layout_width="47dp"
             android:layout_height="32dp"
             android:text="%"
@@ -512,20 +548,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.889" />
+
         <TextView
-            android:id="@+id/pressure_mp_label"
-            android:layout_width="47dp"
-            android:layout_height="32dp"
-            android:text="mp"
-            android:textAlignment="center"
+            android:id="@+id/pressure_pa_label"
+            android:layout_width="147dp"
+            android:layout_height="132dp"
+            android:gravity="center_vertical|center"
+            android:text="mm"
             android:textColor="#1a8"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.523"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.889" />
+            app:layout_constraintBottom_toBottomOf="@+id/forecast_pressure_pa"
+            app:layout_constraintEnd_toEndOf="@+id/forecast_pressure_pa"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintStart_toStartOf="@+id/pressure_pa"
+            app:layout_constraintTop_toTopOf="@+id/pressure_pa"
+            app:layout_constraintVertical_bias="0.545" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

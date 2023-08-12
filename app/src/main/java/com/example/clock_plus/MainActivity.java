@@ -3,6 +3,7 @@
 package com.example.clock_plus;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +27,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 
 import org.json.JSONArray;
@@ -35,17 +35,16 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<request_metrics, metrics> extends AppCompatActivity {
 
     TextClock textClock, textDate;
 
@@ -54,6 +53,51 @@ public class MainActivity extends AppCompatActivity {
     private TextView update_request_time;
     private ImageView plotImageView;
 
+//    public  class appGlobals {
+//        public static String request_metrics;
+//    }
+
+    public static class WeatherMetrix {
+        public String name;
+        public String colorNow;
+        public String colorForecast;
+
+        int WeatherMetrix(String n, String c1, String c2){
+            name = n;
+            colorNow = c1;
+            colorForecast = c2;
+            return 1;
+        }
+        public void showData(){
+            System.out.print("EmpId = "+name + "  " + " Employee Name = "+colorNow);
+            System.out.println();
+        }
+    }
+
+
+    /**
+        "feels_like", "prec_mm", "prec_prob","wind_dir",    "wind_speed",
+                      "temp_avg","temp_min", "pressure_pa", "pressure_mm", "humidity"};
+     '#cba',"#f40",'#4bf',"#ef7","#3fa", "#f5e"
+*/
+
+    WeatherMetrix metrics[] = new WeatherMetrix[5];
+
+//    metrics[0] = void WeatherMetrix("temp","#f40","#d20");
+
+    String request_metrics = "temp,humidity,pressure_mm,wind_speed";
+//
+//    class Person{
+//        String name;
+//        String fname;
+//    }
+
+//    List<Person> people = new ArrayList<Person>();
+//    Person p = new Person();
+//    p.name = "demo";
+//    p.fname = "fdemo";
+//    people.add(p);
+    
     int dayOfWeek = 7;
 
     @SuppressLint("WrongViewCast")
@@ -82,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         jsonParse();
                         moveWeekDay();
-                        plot();
+                        plot("");
                     }
                 });
             }
@@ -101,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
 //  ***************    https://coderoad.ru/25556668/Два-варианта-обновления-TextView-действия-из-другого-класса-с-помощью-TimerTask
 
         getSupportActionBar().hide();
@@ -117,20 +160,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textDebug = (TextView) findViewById(R.id.debugText);
         textDebug.setText("");
 
-//        ll = getApplicationContext().getAssets();
-//        Log.d ("ll","ll");
-//        Typeface myfont = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/cambriab.ttf");
-//        textClock.setTypeface(myfont);
-//        textDate.setTypeface(myfont);
-
         mTextViewResult = findViewById(R.id.debugText);
         Button buttonParse = findViewById(R.id.button_parse);
 
         mQueue = Volley.newRequestQueue(this);
         jsonParse();
         moveWeekDay();
-//        mHandler = new Handler();
-//        startRepeatingTask();
 
         buttonParse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,27 +173,24 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d("@@ 02. onClick", "01. On click");
                 moveWeekDay();
                 jsonParse();
-                plot();
+                plot("");
             }
         });
 
     }
 
-    //    private void batteryLevel()
-//    {
-//        BatteryManager bm = (BatteryManager) context.getSystemService(BATTERY_SERVICE);
-//        int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
-//    }
-
     DrawableCrossFadeFactory factory =
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
 
 
-    private void plot()
+    private void plot(String param)
     {
         plotImageView = findViewById(R.id.plotImageView);
 
-        String  plotImageUrl = "https://gpxlab.ru/api/yw.php";
+        String  plotImageUrl = "https://gpxlab.ru/api/yw.php"+param;
+
+        Log.d("@@ plotImageUrl", plotImageUrl);
+
         Glide.with(this).load(plotImageUrl)
 //                .transition(DrawableTransitionOptions.withCrossFade(factory))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -174,6 +206,47 @@ public class MainActivity extends AppCompatActivity {
                 .into(plotImageView);
     }
 
+    /**        2022-02-12 switch press_pa - press_mm */
+
+    void plotParam(String metrics)
+    {
+        TextView view;
+        int id = getResources().getIdentifier(metrics+"_label", "id", getPackageName());
+        Log.d("@@ plotParam", metrics );
+        view = (TextView) findViewById(id);
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                // TODO Auto-generated method stub
+
+                String color;
+
+                if (request_metrics.contains(","+metrics)) {
+                    request_metrics = request_metrics.replace(","+metrics, "");
+                    color = "#888888";
+                } else {
+                    request_metrics = request_metrics+","+metrics;
+                    color = "#cccccc";
+                }
+
+                TextView b = (TextView) v;
+
+                b.setTextColor(Color.parseColor(color));
+
+
+                Log.d("@@ metr", request_metrics);
+
+                plot("?m=" + request_metrics);
+//                                    pressure_mp_label_mm.setTextColor("#1a8");
+
+                return true;
+            }
+
+
+        });
+
+    }
 
     private void moveWeekDay() {
 
@@ -251,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
 
                             jsonObj = response.getJSONObject("fact");
 
-                            String[] weatherMetrics = {"temp", "humidity", "pressure_pa"};
+                            String[] weatherMetrics = {"temp", "humidity", "pressure_mm", "pressure_pa"};
 
                             for (int i = 0; i < weatherMetrics.length; i++) {
 
@@ -263,6 +336,65 @@ public class MainActivity extends AppCompatActivity {
                                 view.setText(stringMetricValue);
 
                             }
+
+                            //        2022-02-12 switch press_pa - press_mm
+
+                            TextView pressure_mp_label_mm=(TextView)findViewById(R.id.pressure_pa_label);
+
+/** Pressure unit lable Click*/
+
+                            pressure_mp_label_mm.setOnClickListener(new View.OnClickListener() {
+
+                                public void onClick(View v) {
+                                    TextView view_mm = findViewById(R.id.pressure_mm);
+                                    TextView view_pa = findViewById(R.id.pressure_pa);
+                                    TextView view_mm_f = findViewById(R.id.forecast_pressure_mm);
+                                    TextView view_pa_f = findViewById(R.id.forecast_pressure_pa);
+
+                                    TextView b = (TextView)v;
+                                    String pressure_unit = b.getText().toString();
+//                                    String[] pu = {"mm","pa"};
+
+//                                    for (int i = 0; i < pu.length; i++)
+//                                    {}
+//
+//                                    id = getResources().getIdentifier("forecast_pressure_" + pressure_unit, "id", getPackageName());
+//                                    view = (TextView) findViewById(id);
+//
+
+                                    if (pressure_unit == "mm")
+                                    {
+                                        view_mm.setVisibility(View.INVISIBLE);
+                                        view_mm_f.setVisibility(View.INVISIBLE);
+
+                                        view_pa.setVisibility(View.VISIBLE);
+                                        view_pa_f.setVisibility(View.VISIBLE);
+
+                                        pressure_mp_label_mm.setText("pa");
+                                    }
+                                    else
+                                    {
+                                        view_pa.setVisibility(View.INVISIBLE);
+                                        view_pa_f.setVisibility(View.INVISIBLE);
+
+                                        view_mm.setVisibility(View.VISIBLE);
+                                        view_mm_f.setVisibility(View.VISIBLE);
+                                        pressure_mp_label_mm.setText("mm");                                     }
+                                }
+                            });
+
+/** Long press pressure unit label */
+
+
+
+                            plotParam("pressure_pa");
+                            plotParam("humidity");
+                            plotParam("prec_mm");
+                            plotParam("prec_prob");
+                            plotParam("wind_speed");
+
+
+
 
                             jsonObj = response.getJSONObject("forecast");
 
@@ -309,6 +441,7 @@ public class MainActivity extends AppCompatActivity {
                                     "wind_dir", "wind_speed",
                                     "temp_avg", "temp_min",
                                     "pressure_pa",
+                                    "pressure_mm",
                                     "humidity"};
 
 //                            Log.d("@@ 07.", String.valueOf(forecast2));
